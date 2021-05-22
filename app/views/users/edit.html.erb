@@ -5,5 +5,7 @@
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 <label for="inputImage">ProfileImage</label>
 <%= f.attachment_field :profile_image, placeholder:"Image" %>
+<label for="inputIntroduction">Introduction</label>
+<%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction" %>
 <%= f.submit "Update" %>
 <% end %>
