@@ -6,6 +6,6 @@
 <label for="inputImage">ProfileImage</label>
 <%= f.attachment_field :profile_image, placeholder:"Image" %>
 <label for="inputIntroduction">Introduction</label>
-<%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction" %>
+<%= f.text_area :introduction, autofocus: true %>
 <%= f.submit "Update" %>
 <% end %>
