@@ -19,10 +19,12 @@
 
 <h1>Book detail</h1>
 <p><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-<%= link_to user_path(@books.id) do %> 
+<%= link_to user_path(@books.id) do %>
 <p><%= @books.user.name %></p>
 <% end %>
 <p><%= @books.title %></p>
 <p><%= @books.body %></p>
+<% if @user.id == current_user.id %>
 <%= link_to "Edit", edit_book_path(@books.id) %>
 <%= link_to "Destroy", book_path(@books.id), method: :delete, "data-confirm" => "本当に削除しますか？"%>
+<% end %>
