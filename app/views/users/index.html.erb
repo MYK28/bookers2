@@ -1,38 +1,59 @@
-<div class="profile-container">
-  <h2>User info</h2>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', fallback: "no_image.jpg" %>
-  <h3 class="profile-name"><%= @user.name %></h3>
-  <h3 class="profile-introduction"><%= @user.introduction %></h3>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-</div>
-
-<h1>New book</h1>
-<%= form_with model:@book, local:true do |f| %>
-<h4>Title</h4>
-<%= f.text_field :title %>
-<h4>Opinion</h4>
-<%= f.text_area :body %>
-<div><%= f.submit 'Create book'%></div>
-<% end %>
-
-<div>
-  <h2>Users</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
-      <td><%= user.name %></td>
-      <td><%= link_to "Show", user_path(user.id) %></td>
-    </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<main>
+  <div class= "container">
+    <div class= "row">
+      <div class= "col-md-3">
+       <h2>User info</h2>
+       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', fallback: "no_image.jpg" %>
+       <table class="table">
+         <tbody>
+           <tr></tr>
+           <tr>
+             <th>name</th>
+             <th><%= @user.name %></th>
+           </tr>
+           <tr>
+             <th>introduction</th>
+             <th><%= @user.introduction %></th>
+           </tr>
+         </tbody>
+       </table>
+       <div class= "row"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+       <h2>New book</h2>
+       <%= form_with model:@book, local:true do |f| %>
+       <div class= "form_group">
+         <div class= "book_title">Title</div> <!--labelからdivに変更-->
+         <%= f.text_field :title %>
+       </div>
+       <div class= "form_group">
+         <div class= "book_opinion">Opinion</div> <!--labelからdivに変更-->
+         <%= f.text_area :body %>
+       </div>
+       <div class= "form_group">
+         <%= f.submit 'Create book'%>
+       </div>
+       <% end %>
+      </div>
+      <div class= "col-md-8 offset-md-1">
+        <h2>Users</h2>
+        <table class= "table">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th colspan= "3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to "Show", user_path(user.id) %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
