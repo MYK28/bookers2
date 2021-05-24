@@ -18,9 +18,22 @@
          </tbody>
        </table>
        <% if @user.id == current_user.id %>
-       <div class= "row"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+       <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_path" href="/users/<%= current_user.id %>/edit"></a>
+       <!-- <div class= "row"><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-secondary" %></div> -->
        <% end %>
        <h2>New book</h2>
+       <% if @book.errors.any? %>
+       <% book_errors = @book.errors.count %>
+       <% if book_errors == 1 %>
+       <%= @book.errors.count %> error prohibited this obj from being saved:
+       <% else %>
+       <%= @book.errors.count %> errors prohibited this obj from being saved:
+       <% end %>
+       <p><% @book.errors.full_messages.each do |message| %></p>
+       <%= message %>
+       <% end %>
+       <% end %>
+
        <%= form_with model:@book, local:true do |f| %>
        <div class= "form_group">
          <div class= "book_title">Title</div> <!--labelからdivに変更-->
@@ -31,7 +44,7 @@
          <%= f.text_area :body %>
        </div>
        <div class= "form_group">
-         <%= f.submit 'Create book'%>
+         <%= f.submit 'Create Book'%>
        </div>
        <% end %>
       </div>
@@ -68,5 +81,5 @@
     </div>
   </div>
 </main>
-<%= paginate @books %> <!--ここに置いていいのか-->
+<%= paginate @books %>
 
