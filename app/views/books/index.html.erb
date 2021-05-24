@@ -17,10 +17,8 @@
            </tr>
          </tbody>
        </table>
-       <% if @user.id == current_user.id %>
        <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_path" href="/users/<%= current_user.id %>/edit"></a>
        <!-- <div class= "row"><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-secondary" %></div> -->
-       <% end %>
        <h2>New book</h2>
        <% if @book.errors.any? %>
        <% book_errors = @book.errors.count %>
