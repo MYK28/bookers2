@@ -2,50 +2,10 @@
   <div class= "container">
     <div class= "row">
       <div class= "col-md-3">
-       <h2>User info</h2>
-       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', fallback: "no_image.jpg" %>
-       <table class="table">
-         <tbody>
-           <tr></tr>
-           <tr>
-             <th>name</th>
-             <th><%= @user.name %></th>
-           </tr>
-           <tr>
-             <th>introduction</th>
-             <th><%= @user.introduction %></th>
-           </tr>
-         </tbody>
-       </table>
-       <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-       <i class="fas fa-user-cog"></i>
-       <% end %>
-       <h2>New book</h2>
-       <% if @book.errors.any? %>
-       <% book_errors = @book.errors.count %>
-       <% if book_errors == 1 %>
-       <%= @book.errors.count %> error prohibited this obj from being saved:
-       <% else %>
-       <%= @book.errors.count %> errors prohibited this obj from being saved:
-       <% end %>
-       <p><% @book.errors.full_messages.each do |message| %></p>
-       <%= message %>
-       <% end %>
-       <% end %>
+       <%= render 'layouts/userform', user:@user %>
 
-       <%= form_with model:@book, local:true do |f| %>
-       <div class= "form_group">
-         <div class= "book_title">Title</div> <!--labelからdivに変更-->
-         <%= f.text_field :title %>
-       </div>
-       <div class= "form_group">
-         <div class= "book_opinion">Opinion</div> <!--labelからdivに変更-->
-         <%= f.text_area :body %>
-       </div>
-       <div class= "form_group">
-         <%= f.submit 'Create Book'%>
-       </div>
-       <% end %>
+       <%= render 'layouts/bookform', book:@book %>
+
       </div>
       <div class= "col-md-8 offset-md-1">
         <h2>Book detail</h2>

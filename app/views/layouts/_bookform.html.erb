@@ -1,0 +1,26 @@
+<h2>New book</h2>
+<% if book.errors.any? %> <!-- @bookからbookに変更 -->
+<% book_errors = book.errors.count %> <!-- @bookからbookに変更 -->
+<% if book_errors == 1 %>
+<%= book.errors.count %> error prohibited this obj from being saved: <!-- @bookからbookに変更 -->
+<% else %>
+<%= book.errors.count %> errors prohibited this obj from being saved: <!-- @bookからbookに変更 -->
+<% end %>
+<p><% book.errors.full_messages.each do |message| %></p> <!-- @bookからbookに変更 -->
+<%= message %>
+<% end %>
+<% end %>
+
+<%= form_with model:book, local:true do |f| %> <!-- @bookからbookに変更 -->
+<div class= "form_group">
+  <div class= "book_title">Title</div> <!--labelからdivに変更-->
+  <%= f.text_field :title %>
+</div>
+<div class= "form_group">
+  <div class= "book_opinion">Opinion</div> <!--labelからdivに変更-->
+  <%= f.text_area :body %>
+</div>
+<div class= "form_group">
+  <%= f.submit 'Create Book'%>
+</div>
+<% end %>
